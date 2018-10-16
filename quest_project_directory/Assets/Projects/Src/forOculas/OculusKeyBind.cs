@@ -10,9 +10,13 @@ public class OculusKeyBind : MonoBehaviour {
     private GameObject obj2;
     [SerializeField]
     private GameObject gui;
+    [SerializeField]
+    private GameObject m;
+    private PlayerMagica magica;
     private bool flag_ontrigger;
 	// Use this for initialization
 	void Start () {
+        magica = m.GetComponent<PlayerMagica>();
         gui.SetActive(false);
         obj.SetActive(false);
         obj2.SetActive(false);
@@ -33,6 +37,11 @@ public class OculusKeyBind : MonoBehaviour {
             gui.SetActive(false);
             obj.SetActive(false);
             obj2.SetActive(false);
+        }
+
+        if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+        {
+            magica.ShotMagica();
         }
         
         

@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour,GameCharacter {
     private StatusTable s;
     private HpRequest bar;
     private string namefields = "enemy";
-    
+    private bool flag;
 
     void start()
     {
@@ -70,6 +70,16 @@ public class Enemy : MonoBehaviour,GameCharacter {
     public int Search(int key)
     {
         return s.SearchStatusTable(key);
+    }
+
+    public bool GetFlag()
+    {
+        return flag;
+    }
+
+    public void SetFlag()
+    {
+        flag = true;
     }
 
     public void processBattleEvent()

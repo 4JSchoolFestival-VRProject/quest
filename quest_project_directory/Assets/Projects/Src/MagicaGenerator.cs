@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MagicaGenerator : MonoBehaviour {
+public class MagicaGenerator : MonoBehaviour
+{
 
     public GameObject magicaPrefabs;
     float span = 1.0f;
@@ -21,7 +22,7 @@ public class MagicaGenerator : MonoBehaviour {
             this.delta = 0;
             GameObject item = Instantiate(magicaPrefabs) as GameObject;
             float x = Random.Range(-0.5f, 0.5f);
-            float y = Random.Range(0, 10);
+            float y = Random.Range(1, 5);
             img_t.anchoredPosition = new Vector3(x, y, 0.2f);
             item.transform.position = new Vector3(x, y, 20);
         }

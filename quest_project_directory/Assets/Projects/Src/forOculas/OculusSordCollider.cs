@@ -5,7 +5,8 @@ using UnityEngine;
 public class OculusSordCollider : MonoBehaviour {
 
     [SerializeField]
-    private GameObject particleprefabs; 
+    private GameObject particleprefabs;
+
     //オブジェクトが衝突したとき
     void OnTriggerEnter(Collider collision)
     {
@@ -16,6 +17,7 @@ public class OculusSordCollider : MonoBehaviour {
                 Enemy e = GameObject.FindGameObjectWithTag(str).GetComponent<Enemy>();
                 e.processBattleEvent();
                 if (e.Hp <= 0) Destroy(collision.gameObject);
+                PrefabsEnemy.Flag(true);
                 break;
             case "Magica":
                 GameObject particle = Instantiate(particleprefabs) as GameObject;
