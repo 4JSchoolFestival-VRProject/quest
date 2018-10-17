@@ -12,8 +12,8 @@ public class MagicaController : MonoBehaviour {
 
     void Start()
     {
-         Material s = Resources.Load<Material>("blow")
-     //   GetComponent<MeshRenderer>().materials = s;
+        Material s = Resources.Load<Material>("blow");
+    //    GetComponent<MeshRenderer>().materials = s;
         target = GameObject.Find("Player").transform;
     }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class StatusTable{
+public class StatusTable : MonoBehaviour{
     public enum Element
     {
         Level, Hp, Mp, Atk, Def
@@ -11,9 +11,20 @@ public class StatusTable{
     private readonly int[] init_status = { 1, 20, 6, 8, 8 };
     private bool Flag_Hp;
 
-    public StatusTable()
+
+    void Awake()
+    {
+        status = init_status;
+        Debug.Log("Awake; status" + status[0]);
+    }
+
+    void Start()
     {
         Flag_Hp = true;
+    }
+
+    public StatusTable()
+    {
         CreateStatusTable();
     }
 
@@ -23,7 +34,7 @@ public class StatusTable{
         set { Flag_Hp = value; }
     }
 
-    private void CreateStatusTable()
+    public void CreateStatusTable()
     {
         status = new int[5];
         foreach (Element e in Enum.GetValues(typeof(Element)))

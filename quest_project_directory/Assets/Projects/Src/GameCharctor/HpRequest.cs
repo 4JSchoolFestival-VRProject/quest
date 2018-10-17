@@ -5,8 +5,9 @@ using UnityEngine.UI;
 public class HpRequest : MonoBehaviour{
 
     private int maxHp;
+    public bool flag;
     private int Hp;
-    private Enemy enemy;
+    public static Enemy enemy;
     private Slider hpslider;
     
     private void setMaxHp()
@@ -30,16 +31,21 @@ public class HpRequest : MonoBehaviour{
         hpslider.value = value;
     }
 
+    public static void SetEnemy(Enemy e)
+    {
+        enemy = e;
+    }
+
     public void Disable()
     {
         gameObject.SetActive(false);
     }
 
-    private void EnemyHpInitialized(int max, int now)
+    public void EnemyHpInitialized(int max, int now)
     {
         Max = max;
         CurrentHp = now;
-     //   Debug.Log("aaaa");
+        Debug.Log("aaaa");
         hpslider.maxValue = maxHp;
         hpslider.minValue = 0;
         setMaxHp();
@@ -49,15 +55,17 @@ public class HpRequest : MonoBehaviour{
 
     void Start()
     {
-        enemy = transform.root.GetComponent<Enemy>();
-       // Debug.Log("enemy:" + enemy.Hp);
         hpslider = transform.Find("HpBar").GetComponent<Slider>();
-        EnemyHpInitialized(enemy.Hp, enemy.Hp);
+        EnemyHpInitialized(enemy.Hp,enemy.Hp);
         enemy.HpBar(this);
+        Debug.Log("aaaa");
+        
     }
 
     // Update is called once per frame
     void Update () {
+        if (flag) return;
+
         transform.rotation = Camera.main.transform.rotation;
     }
 }

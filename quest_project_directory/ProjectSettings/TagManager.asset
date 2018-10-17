@@ -14,6 +14,7 @@ TagManager:
   - HpBar
   - Magica
   - Ax
+  - Sord
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,12 @@ public class OculusSordCollider : MonoBehaviour {
 
     [SerializeField]
     private GameObject particleprefabs;
+    private SoundManager s;
+
+    void Start()
+    {
+        s = GetComponent<SoundManager>();
+    }
 
     //オブジェクトが衝突したとき
     void OnTriggerEnter(Collider collision)
@@ -13,13 +19,18 @@ public class OculusSordCollider : MonoBehaviour {
         string str = collision.gameObject.tag;
         switch(str)
         {
+            case "Ax":
+                s.Sound(0);
+                Debug.Log("がっキーン");
+                break;
             case "Enemy":
+                s.Sound(1);
                 Enemy e = GameObject.FindGameObjectWithTag(str).GetComponent<Enemy>();
                 e.processBattleEvent();
-                if (e.Hp <= 0) Destroy(collision.gameObject);
                 PrefabsEnemy.Flag(true);
                 break;
             case "Magica":
+                s.Sound(2);
                 GameObject particle = Instantiate(particleprefabs) as GameObject;
                 Vector3 hitPos = collision.ClosestPointOnBounds(this.transform.position);
                 particle.transform.position = hitPos;

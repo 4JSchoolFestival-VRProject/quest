@@ -28,16 +28,16 @@ public class PrefabsEnemy : MonoBehaviour
         Vector3 p = transform.position;
         Vector3 l = cube.transform.position;
         float dis = Vector3.Distance(p, l);
-        Debug.Log(dis);
+       // Debug.Log(dis);
         if (dis > min_dis) {
             agent.destination = target.transform.position;
-            Debug.Log("まだいける");
+           // Debug.Log("まだいける");
         }
         else if (agent.isStopped == false) {
                 agent.isStopped = true;
                 agent.velocity = Vector3.zero;
                 ea.Attack(true);
-                Debug.Log("もう無理");
+             //   Debug.Log("もう無理");
             
         }
         else if(flag)

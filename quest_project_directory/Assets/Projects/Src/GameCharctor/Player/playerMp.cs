@@ -9,11 +9,13 @@ public class playerMp : MonoBehaviour
     Text tex;
     Slider sl;
     Player player;
+    public static bool flag;
     int mp;
     int maxmp;
 
     void Start()
     {
+        flag = true;
         tex = gameObject.transform.Find("Text").GetComponent<Text>();
         sl = GetComponent<Slider>();
         player = myDataBase.AgentPlayer();

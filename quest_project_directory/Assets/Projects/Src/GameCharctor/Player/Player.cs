@@ -8,19 +8,14 @@ public class Player : MonoBehaviour, GameCharacter
     private string namefield;
     private static StatusTable s;
 
-    void start()
+    void Start()
     {
         Debug.Log("Start: Player");
-    }
-
-    public Player()
-    {
-        if (namefield == null)
-        {
-            namefield = "player";
-        }
-        s = new StatusTable();
+        s = GetComponent<StatusTable>();
+        namefield = "player";
         UpdateTable();
+        PlayerLevel.flag = false;
+        playerMp.flag = false;
     }
 
     public string Name
@@ -42,11 +37,13 @@ public class Player : MonoBehaviour, GameCharacter
 
     public void UpdateTable()
     {
+        Debug.Log("update");
         myDataBase.UpdateTable(this);
     }
 
     public void processHpEvent(int damage)
     {
+        Debug.Log(Search(1));
         int hp = Search(1);
         hp -= damage;
         if (hp < 0) hp = 0;

@@ -1,33 +1,41 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour,GameCharacter {
 
     private StatusTable s;
     private HpRequest bar;
+    private EnemyAnimator ani;
+    private NavMeshAgent agent;
     private string namefields = "enemy";
     private bool flag;
 
-    void start()
-    {
-       
-        
-    }
-
-    public Enemy()
+    void Start()
     {
         s = new StatusTable();
-      //  eDebug();
+        ani = GetComponent<EnemyAnimator>();
+        agent = GetComponent<NavMeshAgent>();
+        HpRequest.SetEnemy(this);
+//        bar.EnemyHpInitialized(s.SearchStatusTable(1), s.SearchStatusTable(1));
+
+
     }
 
+    public bool isZero()
+    {
+        return s.F_HP;
+    }
+
+    /*
     void eDebug()
     {
         Debug.Log("int:" + Hp);
         Debug.Log("int:" + Mp);
 
     }
-
+    */
     public int Hp
     {
         get { return s.SearchStatusTable((int)StatusTable.Element.Hp); }
@@ -84,6 +92,7 @@ public class Enemy : MonoBehaviour,GameCharacter {
 
     public void processBattleEvent()
     {
+        
         processHpEvent(3);
     }
 
@@ -91,7 +100,7 @@ public class Enemy : MonoBehaviour,GameCharacter {
     {
         UpdateStatus(KeyHp(),  Hp - damage);
         bar.Request(Hp);
-        if( Hp <= 0) s.F_HP = true;
+        if (Hp <= 0) Destroy(gameObject);
    
         
     }
