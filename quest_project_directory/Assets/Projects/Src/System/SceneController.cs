@@ -5,24 +5,26 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour {
 
     public SceneObject scene;
+    private Player p;
     [SerializeField]
     FadeImage img = null;
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.Space))
+        p = myDataBase.AgentPlayer();
+
+        if (p.HpZero())
         {
-            StartCoroutine(Load(scene));
+            SceneManager.LoadScene(scene);
 
         }
 		
 	}
-
+    /*
     private IEnumerator Load(SceneObject scene)
     {
         img = GameObject.FindObjectOfType<FadeImage>();
@@ -36,4 +38,5 @@ public class SceneController : MonoBehaviour {
         }
         SceneManager.LoadScene(scene);
     }
+    */
 }

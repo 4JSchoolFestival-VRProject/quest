@@ -4,7 +4,8 @@ interface GameCharacter{
 
     void processHpEvent(int damage);
     void processMpEvent(int charge);
-    void processBattleEvent();
+    int processBattleEvent();
+    void processDefenceEvent(int atk, bool phisic);
     void processLevelEvent();
 	
 

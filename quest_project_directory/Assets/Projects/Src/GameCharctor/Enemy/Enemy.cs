@@ -90,17 +90,31 @@ public class Enemy : MonoBehaviour,GameCharacter {
         flag = true;
     }
 
-    public void processBattleEvent()
+    public int processBattleEvent()
     {
-        
-        processHpEvent(3);
+
+        return Search(3);
+    }
+
+    public void processDefenceEvent(int atk, bool phisic)
+    {
+        int def_point;
+        int ran = UnityEngine.Random.Range(0, 4);
+        def_point = phisic ? (int)(atk * 1.1) - Search(4) : (int)(atk * 0.9) - (int)(Search(4) * 0.8);
+        processHpEvent(def_point + ran);
+      
     }
 
     public void processHpEvent(int damage)
     {
+        
         UpdateStatus(KeyHp(),  Hp - damage);
         bar.Request(Hp);
-        if (Hp <= 0) Destroy(gameObject);
+        if (Hp <= 0)
+        {
+            Destroy(gameObject);
+            myDataBase.AgentPlayer().processLevelEvent();
+        }
    
         
     }

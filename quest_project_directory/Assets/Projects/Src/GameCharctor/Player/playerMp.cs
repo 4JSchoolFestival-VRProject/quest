@@ -26,6 +26,7 @@ public class playerMp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (maxmp < mp) maxmp = mp;
         player = myDataBase.AgentPlayer();
         mp = player.Search(2);
         sl.value = mp;

@@ -18,6 +18,7 @@ public class PlayerCollider : MonoBehaviour {
     //オブジェクトが衝突したとき
     void OnTriggerEnter(Collider collision)
     {
+        
         string str = collision.gameObject.tag;
         switch (str)
         { 
@@ -30,7 +31,6 @@ public class PlayerCollider : MonoBehaviour {
                 break;
             case "Magica":
                 s.Sound(0);
-
                 GameObject particle = Instantiate(particleprefabs) as GameObject;
                 Vector3 hitPos = collision.ClosestPointOnBounds(this.transform.position);
                 particle.transform.position = hitPos;

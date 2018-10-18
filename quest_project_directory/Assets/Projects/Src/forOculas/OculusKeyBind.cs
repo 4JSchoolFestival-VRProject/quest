@@ -10,6 +10,7 @@ public class OculusKeyBind : MonoBehaviour {
     private GameObject obj2;
     [SerializeField]
     private GameObject m;
+    private Player p;
     private PlayerMagica magica;
     private bool flag_ontrigger;
 	// Use this for initialization
@@ -22,6 +23,7 @@ public class OculusKeyBind : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        p = myDataBase.AgentPlayer();
         if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
         {
             obj.SetActive(false);
@@ -32,7 +34,13 @@ public class OculusKeyBind : MonoBehaviour {
         {
             obj.SetActive(true);
             obj2.SetActive(true);
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad)) magica.ShotMagica();
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad))
+            {
+                if (p.Search(2) <= 0) return;
+                magica.ShotMagica();
+                p.processMpEvent(2);
+
+            }
         }
         
         

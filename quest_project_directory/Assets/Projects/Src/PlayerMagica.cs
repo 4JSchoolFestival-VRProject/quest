@@ -9,7 +9,7 @@ public class PlayerMagica : MonoBehaviour
     private GameObject magicaPrefabs;
     [SerializeField]
     public Transform muzzle;
-    public float speed = 1000;
+    public float speed = 1.0f;
 
     float span = 4.0f;
     float delta = 0;
@@ -23,7 +23,7 @@ public class PlayerMagica : MonoBehaviour
     public void ShotMagica()
     {
 
-        GameObject magic =  Instantiate(magicaPrefabs);
+        GameObject magic =  Instantiate(magicaPrefabs) as GameObject;
         Vector3 force;
 
         force = this.gameObject.transform.forward * speed;
