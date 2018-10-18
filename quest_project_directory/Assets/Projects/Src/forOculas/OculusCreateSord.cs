@@ -31,28 +31,13 @@ public class OculusCreateSord: MonoBehaviour {
         else if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
             obj.SetActive(false);
-        /*
-            if(OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                obj.SetActive(false);
-            }
-            */
+        
 
         }
         else return;
         
     }
-/*
-    public void CreatePrefabsSord()
-    {
-        Vector3 v = new Vector3(0.2f, 2.8f, 0.5f);
-        Quaternion rote = new Quaternion(220.0f, -0.5f, 0.0f, 1.0f);
-        //    this.obj = Instantiate(sordprefabs, v, Quaternion.identity) as GameObject;
-        obj = Instantiate(sordprefabs) as GameObject;
-        OnParentChange();
 
-    }
-    */
     public void OnParentChange()
     {
         Obj.transform.parent = parenthand;

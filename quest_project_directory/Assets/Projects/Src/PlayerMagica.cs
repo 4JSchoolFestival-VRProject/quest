@@ -8,21 +8,31 @@ public class PlayerMagica : MonoBehaviour
     [SerializeField]
     private GameObject magicaPrefabs;
     [SerializeField]
-    private OVRCameraRig mycamera;
-    private Transform x;
+    public Transform muzzle;
+    public float speed = 1000;
+
     float span = 4.0f;
     float delta = 0;
 
     void Start()
     {
-        x = mycamera.transform;
-        mycamera = transform.parent.gameObject.GetComponent<OVRCameraRig>();
+        
+        
     }
 
     public void ShotMagica()
     {
 
-        Instantiate(magicaPrefabs, x);
+        GameObject magic =  Instantiate(magicaPrefabs);
+        Vector3 force;
+
+        force = this.gameObject.transform.forward * speed;
+
+        // Rigidbodyに力を加えて発射
+       magic.GetComponent<Rigidbody>().AddForce(force);
+
+        // 弾丸の位置を調整
+       magic.transform.position = muzzle.position;
     }
 
     void Update()

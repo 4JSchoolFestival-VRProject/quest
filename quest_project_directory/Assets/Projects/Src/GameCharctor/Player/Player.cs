@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, GameCharacter
         Debug.Log("Start: Player");
         s = GetComponent<StatusTable>();
         namefield = "player";
+        UpdateStatus(1, 40);
         UpdateTable();
         PlayerLevel.flag = false;
         playerMp.flag = false;
@@ -50,7 +51,12 @@ public class Player : MonoBehaviour, GameCharacter
         UpdateStatus(1, hp);
     }
 
-    public void processMpEvent(int charge) { }
-    public void processBattleEvent() { }
-    public void processLevelEvent() { }
+    public void processMpEvent(int charge)
+    { }
+
+    public void processBattleEvent()
+    { }
+
+    public void processLevelEvent()
+    { }
 }

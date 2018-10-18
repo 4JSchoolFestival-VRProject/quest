@@ -12,7 +12,7 @@ public class MagicaController : MonoBehaviour {
 
     void Start()
     {
-        Material s = Resources.Load<Material>("blow");
+  //      Material s = Resources.Load<Material>("blow");
     //    GetComponent<MeshRenderer>().materials = s;
         target = GameObject.Find("Player").transform;
     }
@@ -28,6 +28,16 @@ public class MagicaController : MonoBehaviour {
         {
             Destroy(gameObject);
             timeElapsed = 0.0f;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        string str = other.gameObject.tag;
+        if(str == "Sord")
+        {
+           
+            timeElapsed = 0;
         }
     }
 }
