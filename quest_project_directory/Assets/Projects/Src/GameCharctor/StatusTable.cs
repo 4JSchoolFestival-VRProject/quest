@@ -16,18 +16,19 @@ public class StatusTable : MonoBehaviour{
     {
         status = init_status;
         Debug.Log("Awake; status" + status[0]);
+        CreateStatusTable();
     }
 
     void Start()
     {
         Flag_Hp = true;
     }
-
+    /*
     public StatusTable()
     {
         CreateStatusTable();
     }
-
+    */
     public bool F_HP
     {
         get { return Flag_Hp; }

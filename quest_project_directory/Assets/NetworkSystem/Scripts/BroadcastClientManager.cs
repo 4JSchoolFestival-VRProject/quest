@@ -15,8 +15,8 @@ namespace NetwrokSystem
         {
             singleton = this;
             base.Awake();
-            if(clientManager == null)
-               clientManager = GetComponent<ClientManager>();
+            if (clientManager == null)
+                clientManager = GetComponent<ClientManager>();
         }
 
         private void Start()

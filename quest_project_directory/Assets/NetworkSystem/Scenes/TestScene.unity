@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252323ab1aa05ba4c9b98e019f654800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tcpPort: 50000
-  castPort: 50001
+  tcpPort: 2001
+  castPort: 8000
 --- !u!4 &151150855
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9918aa0bee769ec40a2bf1e402caf47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castPort: 50001
+  castPort: 8000
 --- !u!4 &698999894
 Transform:
   m_ObjectHideFlags: 0

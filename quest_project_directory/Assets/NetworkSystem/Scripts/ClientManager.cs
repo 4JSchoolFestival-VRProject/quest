@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace NetwrokSystem
@@ -10,14 +11,49 @@ namespace NetwrokSystem
     {
         [SerializeField] public int castPort = 50001;
 
+        public static ClientManager singleton;
+
+        protected override void Awake()
+        {
+            if(singleton != null)
+            {
+                Destroy(this);
+                return;
+            }
+            singleton = this;
+            DontDestroyOnLoad(gameObject);
+            base.Awake();
+
+        }
+
+        private void Update()
+        {
+            if (SceneManager.GetActiveScene().name == "Connection" && isConnecting)
+            {
+                // SceneManager.LoadScene("Encount");
+
+                SceneManager.LoadSceneAsync("Encount");
+            }
+        }
+
         public void Connect(IPAddress address, int port)
         {
-            BeginConnect(address, port);
+            base.BeginConnect(address, port);
         }
 
         public void Send()
         {
-            base.Send("TestMessage");
+            this.Send("TestMessage");
+        }
+
+        public new void Send(string msg)
+        {
+            base.Send(msg);
+        }
+
+        protected override void OnConnectedServer()
+        {
+            base.OnConnectedServer();
         }
 
         protected override void OnGetMessage(string msg)

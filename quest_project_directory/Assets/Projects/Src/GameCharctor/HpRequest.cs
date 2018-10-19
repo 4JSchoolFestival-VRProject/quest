@@ -7,7 +7,7 @@ public class HpRequest : MonoBehaviour{
     private int maxHp;
     public bool flag;
     private int Hp;
-    public static Enemy enemy;
+    public Enemy enemy;
     private Slider hpslider;
     
     private void setMaxHp()
@@ -31,7 +31,7 @@ public class HpRequest : MonoBehaviour{
         hpslider.value = value;
     }
 
-    public static void SetEnemy(Enemy e)
+    public void SetEnemy(Enemy e)
     {
         enemy = e;
     }
@@ -56,7 +56,7 @@ public class HpRequest : MonoBehaviour{
     void Start()
     {
         hpslider = transform.Find("HpBar").GetComponent<Slider>();
-        EnemyHpInitialized(enemy.Hp,enemy.Hp);
+        EnemyHpInitialized(enemy.Hp, enemy.Hp);
         enemy.HpBar(this);
         Debug.Log("aaaa");
         

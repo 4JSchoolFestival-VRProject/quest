@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using NetwrokSystem;
 
 static class myDataBase{
 
@@ -36,10 +37,17 @@ static class myDataBase{
         m_p = p;
     }
 
-    public static void UpdateTable(Player p)
+    public static void UpdateTable(Player p, bool isbase)
     {
+        string[] temp = { "level:", "hp:", "mp:", "atk:", "def:" };
+        string input = isbase ? "base:" : "status:";
+
+        for (int i = 0; i < 5; i++)
+        {
+            input += temp[i] + p.Search(i).ToString() + ":";
+        }
         QuerySet(p);
-        GameController.UpdateTable(p);
+        ClientManager.singleton.Send(input);
     }
 
     public static void SetStatusToPlayer()
@@ -56,7 +64,6 @@ static class myDataBase{
     public static string StatusToString(string mod, string value)
     {
         return mod + value;
-
     }
 
     public static string StatusToString(string mod, int value)

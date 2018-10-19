@@ -19,6 +19,8 @@ namespace NetwrokSystem
         private AsyncCallback OnReadCallback;
         private AsyncCallback OnWriteCallback;
 
+        protected bool isConnecting;
+
         protected virtual void Awake()
         {
             m_Buffer = new byte[1024];
@@ -40,6 +42,8 @@ namespace NetwrokSystem
         {
             Debug.Log("DisConnect");
 
+            isConnecting = false;
+
             m_Stream.Close();
             m_Client.Close();
             m_Stream = null;
@@ -53,7 +57,12 @@ namespace NetwrokSystem
                 byte[] sendBytes = Encoding.UTF8.GetBytes(msg);
                 m_Stream.BeginWrite(sendBytes, 0, sendBytes.Length, OnWriteCallback, m_Stream);
             }
-            catch(Exception ex) { Debug.Log(ex); }
+            catch (Exception ex) { Debug.Log(ex); }
+        }
+
+        protected virtual void OnConnectedServer()
+        {
+            isConnecting = true;
         }
 
         protected virtual void OnGetMessage(string msg)
@@ -70,6 +79,7 @@ namespace NetwrokSystem
                 Debug.Log("Connect : " + server.Client.RemoteEndPoint);
                 m_Stream = server.GetStream();
                 m_Stream.BeginRead(m_Buffer, 0, m_Buffer.Length, OnReadCallback, m_Stream);
+                OnConnectedServer();
             }
             catch (Exception ex) { Debug.Log(ex); }
         }

@@ -64,13 +64,13 @@ namespace NetwrokSystem
         protected void BeginListen(int port)
         {
             Debug.Log("BeginListen");
-
             try
             {
                 UdpClient client = new UdpClient(new IPEndPoint(IPAddress.Any, port));
+                client.EnableBroadcast = true;
                 client.BeginReceive(OnReceiveCallback, client);
             }
-            catch (Exception ex) { Console.WriteLine(ex); }
+            catch (Exception ex) { Debug.Log(ex); }
         }
 
         protected virtual void OnGetBroadcast(IPEndPoint endPoint, string msg) { }

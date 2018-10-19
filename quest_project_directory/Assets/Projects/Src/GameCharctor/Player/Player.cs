@@ -14,8 +14,8 @@ public class Player : MonoBehaviour, GameCharacter
         Debug.Log("Start: Player");
         s = GetComponent<StatusTable>();
         namefield = "player";
-        UpdateStatus(1, 40);
-        UpdateTable();
+        UpdateStatus(1, 40, true);
+        //UpdateTable(true);
         PlayerLevel.flag = false;
         playerMp.flag = false;
     }
@@ -39,10 +39,10 @@ public class Player : MonoBehaviour, GameCharacter
         return b = (Search(1) <= 0) ? true : false;
     }
 
-    public void UpdateStatus(int key, int value)
+    public void UpdateStatus(int key, int value, bool isbase)
     {
         s.UpdateStatus(key, value);
-        UpdateTable();
+        UpdateTable(isbase);
     }
 
     public int Search(int key)
@@ -50,10 +50,10 @@ public class Player : MonoBehaviour, GameCharacter
         return s.SearchStatusTable(key);
     }
 
-    public void UpdateTable()
+    public void UpdateTable(bool isbase)
     {
         Debug.Log("update");
-        myDataBase.UpdateTable(this);
+        myDataBase.UpdateTable(this, isbase);
     }
 
     public void processHpEvent(int damage)
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, GameCharacter
         Debug.Log(Search(1));
         int hp = Search(1) - damage;
         if (HpZero() && hp < 0) hp = 0;
-        UpdateStatus(1, hp);
+        UpdateStatus(1, hp, false);
     }
 
     public void processMpEvent(int charge)
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour, GameCharacter
             return;
         }
         mp = Search(2) - charge;
-        UpdateStatus(2, mp);
+        UpdateStatus(2, mp, false);
 
     }
 
@@ -94,10 +94,10 @@ public class Player : MonoBehaviour, GameCharacter
     public void processLevelEvent()
     {
         int lv = Search(0) + 1;
-        UpdateStatus(0, Search(0) + 1);
+        UpdateStatus(0, Search(0) + 1, false);
         for(int i = 1; i < 5; i++)
         {
-            UpdateStatus(i, Search(i) + lv);
+            UpdateStatus(i, Search(i) + lv, false);
         }
     }
 }

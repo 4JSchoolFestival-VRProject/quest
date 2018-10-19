@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour,GameCharacter {
 
-    private StatusTable s;
+    [SerializeField] private StatusTable s;
     private HpRequest bar;
     private EnemyAnimator ani;
     private NavMeshAgent agent;
@@ -14,10 +14,12 @@ public class Enemy : MonoBehaviour,GameCharacter {
 
     void Start()
     {
-        s = new StatusTable();
+        //s = this.GetComponent<StatusTable>();
+        Debug.Log(s);
         ani = GetComponent<EnemyAnimator>();
         agent = GetComponent<NavMeshAgent>();
-        HpRequest.SetEnemy(this);
+        bar = GetComponentInChildren<HpRequest>();
+        bar.SetEnemy(this);
 //        bar.EnemyHpInitialized(s.SearchStatusTable(1), s.SearchStatusTable(1));
 
 
