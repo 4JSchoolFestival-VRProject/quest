@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: game_fps
+  companyName: KPad
+  productName: Quest
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -152,7 +152,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.unity3d.vrstandardassets
+    Android: com.KPad.Quest
     Standalone: unity.Unity.VRSamples
     Tizen: com.unity3d.vrstandardassets
     iOS: com.unity3d.vrstandardassets
@@ -160,7 +160,7 @@ PlayerSettings:
   buildNumber:
     iOS: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 21
+  AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
@@ -775,9 +775,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
-  cloudProjectId: 02f523aa-77ff-4a78-8362-abc398ad2ee8
-  projectName: game_fps
-  organizationId: unity_2kvivpvcx7370a
+  cloudProjectId: 4562b8e1-1807-4ff7-8602-817714271cc9
+  projectName: Quest
+  organizationId: glaceon-33kingusp
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
