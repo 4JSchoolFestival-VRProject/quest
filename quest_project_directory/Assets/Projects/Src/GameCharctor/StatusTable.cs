@@ -23,6 +23,13 @@ public class StatusTable : MonoBehaviour{
     {
         Flag_Hp = true;
     }
+
+    public void ResetStatus()
+    {
+        status = init_status;
+        CreateStatusTable();
+        Flag_Hp = true;
+    }
     /*
     public StatusTable()
     {

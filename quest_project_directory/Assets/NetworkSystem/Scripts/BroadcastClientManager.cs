@@ -19,11 +19,13 @@ namespace NetwrokSystem
                 clientManager = GetComponent<ClientManager>();
         }
 
+        /*
         private void Start()
         {
             if(!clientManager.isConnecting)
                 StartListen();
         }
+        */
 
         public void StartListen()
         {
@@ -33,10 +35,12 @@ namespace NetwrokSystem
         protected override void OnGetBroadcast(IPEndPoint endPoint, string msg)
         {
             Debug.Log("OnGetBroadcast");
+            /*
             base.OnGetBroadcast(endPoint, msg);
 
             Debug.Log(endPoint.Address + " : " + endPoint.Port + " : " + msg);
             clientManager.Connect(endPoint.Address, int.Parse(msg));
+            */
         }
     }
 }

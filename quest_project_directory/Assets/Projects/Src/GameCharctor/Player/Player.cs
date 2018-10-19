@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, GameCharacter
 {
     public static Player singleton;
+    public Camera centerEyeAnchor;
 
     private string namefield;
     private static StatusTable s;
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour, GameCharacter
 
     public void processHpEvent(int damage)
     {
-        Debug.Log(Search(1));
+       // Debug.Log(Search(1));
         int hp = Search(1) - damage;
         if (HpZero() && hp < 0) hp = 0;
         UpdateStatus(1, hp, false);

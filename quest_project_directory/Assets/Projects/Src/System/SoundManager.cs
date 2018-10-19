@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
 
-
-    AudioSource audioSource;  
-    public List<AudioClip> audioClip = new List<AudioClip>();  
+public class SoundManager : MonoBehaviour
+{
+    private AudioSource audioSource;
+    public List<AudioClip> audioClip = new List<AudioClip>();
 
     // Use this for initialization
+    private void Awake()
+    {
+        this.audioSource = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();  
+
     }
 
     // Update is called once per frame
@@ -22,6 +27,6 @@ public class SoundManager : MonoBehaviour {
 
     public void Sound(int value)
     {
-        audioSource.PlayOneShot(audioClip[value]);
+        this.audioSource.PlayOneShot(audioClip[value]);
     }
 }

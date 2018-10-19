@@ -29,7 +29,8 @@ static class myDataBase{
 
     public static void DisposeTable()
     {
-        m_p = new Player();
+        //m_p = new Player();
+        m_p = Player.singleton;
     }
 
     public static void QuerySet(Player p)

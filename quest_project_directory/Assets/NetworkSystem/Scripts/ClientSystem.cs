@@ -11,72 +11,65 @@ namespace NetwrokSystem
 {
     public class ClientSystem : MonoBehaviour
     {
-        private TcpClient m_Client;
-        private NetworkStream m_Stream;
+        private UdpClient m_Client;
+        private IPAddress m_IPAddress;
+        private int m_Port;
         private byte[] m_Buffer;
 
-        private AsyncCallback OnConnectCallback;
-        private AsyncCallback OnReadCallback;
         private AsyncCallback OnWriteCallback;
 
         private Queue<string> sendMessageQueue;
         private bool isSending;
 
-        public bool isConnecting;
-
         protected virtual void Awake()
         {
             m_Buffer = new byte[1024];
 
-            OnConnectCallback = new AsyncCallback(OnConnect);
-            OnReadCallback = new AsyncCallback(OnRead);
             OnWriteCallback = new AsyncCallback(OnWrite);
 
             sendMessageQueue = new Queue<string>();
             isSending = false;
         }
 
-        protected virtual void Update()
+        protected void Setup(IPAddress address, int port)
         {
-            SendQueue();
+            Debug.Log("Setup : " + address.ToString() + ":" + port);
+
+            m_Client = new UdpClient();
+            SetEndPoint(address, port);
         }
 
-        protected void BeginConnect(IPAddress address, int port)
+        protected void SetEndPoint(IPAddress address, int port)
         {
-            Debug.Log("BeginConnect : " + address.ToString() + ":" + port);
-
-            m_Client = new TcpClient();
-            m_Client.BeginConnect(address, port, OnConnectCallback, m_Client);
+            m_IPAddress = address;
+            m_Port = port;
         }
 
         protected void DisConnect()
         {
             Debug.Log("DisConnect");
 
-            isConnecting = false;
-
-            m_Stream.Close();
             m_Client.Close();
-            m_Stream = null;
             m_Client = null;
         }
 
         protected void Send(string msg)
         {
-            Debug.Log("setQueue : " + msg);
+            if (m_Client == null) return;
             sendMessageQueue.Enqueue(msg);
+            if (isSending)
+                return;
+            SendQueue();
         }
 
         private void SendQueue()
         {
-            Debug.Log(sendMessageQueue.Count + " : " + isSending);
-            if (sendMessageQueue.Count <= 0 || isSending || !isConnecting) return;
             isSending = true;
             try
             {
                 Debug.Log("sendQueue");
                 byte[] sendBytes = Encoding.UTF8.GetBytes(sendMessageQueue.Dequeue());
-                m_Stream.BeginWrite(sendBytes, 0, sendBytes.Length, OnWriteCallback, m_Stream);
+                m_Client.BeginSend(sendBytes, sendBytes.Length, new IPEndPoint(m_IPAddress, m_Port),OnWriteCallback, m_Client);
             }
             catch (Exception ex)
             {
@@ -85,50 +78,17 @@ namespace NetwrokSystem
             }
         }
 
-        protected virtual void OnConnectedServer()
-        {
-            isConnecting = true;
-        }
-
         protected virtual void OnGetMessage(string msg)
         {
 
         }
 
-        private void OnConnect(IAsyncResult ar)
-        {
-            Debug.Log("OnConnect");
-            try
-            {
-                TcpClient server = ar.AsyncState as TcpClient;
-                Debug.Log("Connect : " + server.Client.RemoteEndPoint);
-                m_Stream = server.GetStream();
-                m_Stream.BeginRead(m_Buffer, 0, m_Buffer.Length, OnReadCallback, m_Stream);
-                OnConnectedServer();
-            }
-            catch (Exception ex) { Debug.Log(ex); }
-        }
-
-        private void OnRead(IAsyncResult ar)
-        {
-            Debug.Log("OnRead");
-
-            int byteRead = m_Stream.EndRead(ar);
-            if (byteRead > 0)
-            {
-                string msg = Encoding.UTF8.GetString(m_Buffer, 0, m_Buffer.Length);
-                OnGetMessage(msg);
-            }
-            else
-                DisConnect();
-        }
-
         private void OnWrite(IAsyncResult ar)
         {
             Debug.Log("OnWrite");
-            m_Stream.EndWrite(ar);
+            m_Client.EndSend(ar);
             isSending = false;
-            //m_Stream.BeginRead(m_Buffer, 0, m_Buffer.Length, OnRead, m_Stream);
+            if (sendMessageQueue.Count > 0) SendQueue();
         }
     }
 }

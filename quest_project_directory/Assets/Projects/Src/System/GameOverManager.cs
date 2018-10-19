@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
-    private void Start()
+    private IEnumerator Start()
     {
-        SceneManager.LoadSceneAsync("Connection");
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadSceneAsync("Title");
+        yield break;
     }
 
     private void Update()

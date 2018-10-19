@@ -15,6 +15,7 @@ public class OculusKeyBind : MonoBehaviour {
     private bool flag_ontrigger;
 	// Use this for initialization
 	void Start () {
+        return;
         magica = m.GetComponent<PlayerMagica>();
       
         obj.SetActive(true);
@@ -23,6 +24,7 @@ public class OculusKeyBind : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        return;
         p = myDataBase.AgentPlayer();
         if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
         {

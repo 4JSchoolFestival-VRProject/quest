@@ -6,18 +6,44 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
-    [SerializeField] EnemyRespawn enemyRespawn;
+    public static StartCountDown startCountDown;
 
     private void Awake()
     {
+        if(singleton != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         singleton = this;
     }
 
-    public void StartGame()
+    private void Start()
     {
-        Debug.Log("Load");
-        Player.singleton.UpdateStatus(1, 40, true);
-        Player.singleton.UpdateStatus(1, 40, false);
-        enemyRespawn.StartSpawn();
+        SceneManager.activeSceneChanged += OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene bscene, Scene ascene)
+    {
+        Debug.Log("OnSceneLoaded : " + ascene.name);
+        switch (ascene.name)
+        {
+            case "Title":
+                break;
+
+            case "Encount":
+                Player.singleton.UpdateStatus(1, 40, true);
+                Player.singleton.UpdateStatus(1, 40, false);
+                startCountDown.GameStartAction = OnStartGame;
+                startCountDown.CountDown();
+                break;
+            case "gameover":
+                break;
+        }
+    }
+
+    private void OnStartGame()
+    {
+        Debug.Log("Start");
     }
 }
