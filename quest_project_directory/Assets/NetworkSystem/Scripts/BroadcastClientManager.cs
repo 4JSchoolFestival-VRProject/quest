@@ -21,7 +21,8 @@ namespace NetwrokSystem
 
         private void Start()
         {
-            StartListen();
+            if(!clientManager.isConnecting)
+                StartListen();
         }
 
         public void StartListen()

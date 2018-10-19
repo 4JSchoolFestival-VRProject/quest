@@ -22,7 +22,7 @@ namespace NetwrokSystem
         private Queue<string> sendMessageQueue;
         private bool isSending;
 
-        protected bool isConnecting;
+        public bool isConnecting;
 
         protected virtual void Awake()
         {

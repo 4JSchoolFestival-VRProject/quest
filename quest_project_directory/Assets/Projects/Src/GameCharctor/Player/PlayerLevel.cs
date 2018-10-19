@@ -10,10 +10,7 @@ public class PlayerLevel : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Debug.Log("levelです");
-        tex = GetComponent<Text>();
-        
-       
+        tex = GetComponent<Text>();  
     }
 
     // Update is called once per frame

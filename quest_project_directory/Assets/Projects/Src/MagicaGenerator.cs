@@ -10,10 +10,12 @@ public class MagicaGenerator : MonoBehaviour
     float span = 1.0f;
     float delta = 0;
     private RectTransform img_t;
+
     void Start()
     {
         img_t = gameObject.transform.Find("Canvas").gameObject.transform.Find("Image").gameObject.GetComponent<RectTransform>();
     }
+
     void Update()
     {
         this.delta += Time.deltaTime;

@@ -23,6 +23,7 @@ namespace NetwrokSystem
             singleton = this;
             DontDestroyOnLoad(gameObject);
             base.Awake();
+            SceneManager.sceneLoaded += OnLoadScene;
         }
 
         protected override void Update()
@@ -30,9 +31,7 @@ namespace NetwrokSystem
             base.Update();
             if (SceneManager.GetActiveScene().name == "Connection" && isConnecting)
             {
-                Player.singleton.UpdateStatus(1, 40, true);
-                Player.singleton.UpdateStatus(1, 40, false);
-                SceneManager.LoadSceneAsync("Encount");
+                SceneManager.LoadScene("Encount");
             }
         }
 
@@ -60,6 +59,14 @@ namespace NetwrokSystem
         {
             base.OnGetMessage(msg);
             Debug.Log(msg);
+        }
+
+        private void OnLoadScene(Scene scene,LoadSceneMode mode)
+        {
+            if(scene.name == "Encount")
+            {
+                GameManager.singleton.StartGame();
+            }
         }
     }
 }
