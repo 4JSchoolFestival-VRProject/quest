@@ -19,6 +19,9 @@ namespace NetwrokSystem
         private AsyncCallback OnReadCallback;
         private AsyncCallback OnWriteCallback;
 
+        private Queue<string> sendMessageQueue;
+        private bool isSending;
+
         protected bool isConnecting;
 
         protected virtual void Awake()
@@ -28,6 +31,14 @@ namespace NetwrokSystem
             OnConnectCallback = new AsyncCallback(OnConnect);
             OnReadCallback = new AsyncCallback(OnRead);
             OnWriteCallback = new AsyncCallback(OnWrite);
+
+            sendMessageQueue = new Queue<string>();
+            isSending = false;
+        }
+
+        protected virtual void Update()
+        {
+            SendQueue();
         }
 
         protected void BeginConnect(IPAddress address, int port)
@@ -52,12 +63,26 @@ namespace NetwrokSystem
 
         protected void Send(string msg)
         {
+            Debug.Log("setQueue : " + msg);
+            sendMessageQueue.Enqueue(msg);
+        }
+
+        private void SendQueue()
+        {
+            Debug.Log(sendMessageQueue.Count + " : " + isSending);
+            if (sendMessageQueue.Count <= 0 || isSending || !isConnecting) return;
+            isSending = true;
             try
             {
-                byte[] sendBytes = Encoding.UTF8.GetBytes(msg);
+                Debug.Log("sendQueue");
+                byte[] sendBytes = Encoding.UTF8.GetBytes(sendMessageQueue.Dequeue());
                 m_Stream.BeginWrite(sendBytes, 0, sendBytes.Length, OnWriteCallback, m_Stream);
             }
-            catch (Exception ex) { Debug.Log(ex); }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+                isSending = false;
+            }
         }
 
         protected virtual void OnConnectedServer()
@@ -102,7 +127,8 @@ namespace NetwrokSystem
         {
             Debug.Log("OnWrite");
             m_Stream.EndWrite(ar);
-            m_Stream.BeginRead(m_Buffer, 0, m_Buffer.Length, OnRead, m_Stream);
+            isSending = false;
+            //m_Stream.BeginRead(m_Buffer, 0, m_Buffer.Length, OnRead, m_Stream);
         }
     }
 }

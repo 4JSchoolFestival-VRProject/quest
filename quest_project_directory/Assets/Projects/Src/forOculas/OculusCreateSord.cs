@@ -11,8 +11,7 @@ public class OculusCreateSord: MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-
-        Debug.Log("aa");
+        
         flag = true;
 
     }

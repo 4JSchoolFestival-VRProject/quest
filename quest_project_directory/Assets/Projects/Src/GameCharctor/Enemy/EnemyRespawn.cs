@@ -18,7 +18,7 @@ public class EnemyRespawn : MonoBehaviour
         return SceneBack.F_Scene = false;
     }
 
-    void Start()
+    public void StartSpawn()
     {
         flag = false;
         enemy_collection = new List<GameObject>();
@@ -28,7 +28,6 @@ public class EnemyRespawn : MonoBehaviour
             g = Instantiate(enemy,
                             new Vector3((i * 15) - 10, 1, 25),
                             Quaternion.identity) as GameObject;
-           // Debug.Log(i);
             enemy_collection.Add(g);
         }
     }

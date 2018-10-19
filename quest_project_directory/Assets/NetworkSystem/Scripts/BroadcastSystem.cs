@@ -66,11 +66,18 @@ namespace NetwrokSystem
             Debug.Log("BeginListen");
             try
             {
-                UdpClient client = new UdpClient(new IPEndPoint(IPAddress.Any, port));
-                client.EnableBroadcast = true;
-                client.BeginReceive(OnReceiveCallback, client);
+                m_Client = new UdpClient(new IPEndPoint(IPAddress.Any, port));
+                m_Client.EnableBroadcast = true;
+                m_Client.BeginReceive(OnReceiveCallback, m_Client);
             }
             catch (Exception ex) { Debug.Log(ex); }
+        }
+
+        protected void StopListen()
+        {
+            if (m_Client == null) return;
+            m_Client.Close();
+            m_Client = null;
         }
 
         protected virtual void OnGetBroadcast(IPEndPoint endPoint, string msg) { }
@@ -89,6 +96,11 @@ namespace NetwrokSystem
                 OnGetBroadcast(remoteIP, msg);
             }
             catch (Exception ex) { Debug.Log(ex); }
+        }
+
+        private void OnApplicationQuit()
+        {
+            StopListen();
         }
     }
 }

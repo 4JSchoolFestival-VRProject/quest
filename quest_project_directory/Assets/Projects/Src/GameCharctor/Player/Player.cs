@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, GameCharacter
 {
-    
+    public static Player singleton;
+
     private string namefield;
     private static StatusTable s;
     private PlayerMagica pm;
+
+    void Awake()
+    {
+        if(singleton != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        singleton = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         Debug.Log("Start: Player");
         s = GetComponent<StatusTable>();
         namefield = "player";
-        UpdateStatus(1, 40, true);
+        //UpdateStatus(1, 40, true);
         //UpdateTable(true);
         PlayerLevel.flag = false;
         playerMp.flag = false;

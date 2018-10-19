@@ -23,15 +23,15 @@ namespace NetwrokSystem
             singleton = this;
             DontDestroyOnLoad(gameObject);
             base.Awake();
-
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
             if (SceneManager.GetActiveScene().name == "Connection" && isConnecting)
             {
-                // SceneManager.LoadScene("Encount");
-
+                Player.singleton.UpdateStatus(1, 40, true);
+                Player.singleton.UpdateStatus(1, 40, false);
                 SceneManager.LoadSceneAsync("Encount");
             }
         }
