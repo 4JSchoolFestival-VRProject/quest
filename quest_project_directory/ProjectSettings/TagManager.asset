@@ -15,6 +15,8 @@ TagManager:
   - Magica
   - Ax
   - Sord
+  - Fire
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX

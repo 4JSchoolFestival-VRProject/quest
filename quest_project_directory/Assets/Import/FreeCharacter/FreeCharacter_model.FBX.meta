@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1b7945602ded3ec43804b120aa9ed037
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Backet_Bone
     100002: CATHead
@@ -124,7 +124,32 @@ ModelImporter:
     11100000: //RootNode
     13700000: NPC_Bag_006
     13700002: NPC_Man_Normal001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #70566'
+    second: {fileID: 2100000, guid: cc7344c491726244d8684f42ea8658bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #70567'
+    second: {fileID: 2100000, guid: 1a34c8866473e084683a10fd69f98527, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #70568'
+    second: {fileID: 2100000, guid: ac4dd9c2105f87e4699d893de025fa80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #70569'
+    second: {fileID: 2100000, guid: 22a364e606e45354bb981ef2bf74a19c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #70600'
+    second: {fileID: 2100000, guid: 37f0a3ade68ce29489320a7fa88ea0eb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -175,6 +200,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
