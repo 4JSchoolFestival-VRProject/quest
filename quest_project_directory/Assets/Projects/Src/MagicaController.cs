@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MagicaController : MonoBehaviour {
+public class MagicaController : MonoBehaviour
+{
+
     public float speed = -0.3f;
     public float rotMax = 1.0f;
     public float timeOut;
@@ -12,11 +14,8 @@ public class MagicaController : MonoBehaviour {
 
     void Start()
     {
-  //      Material s = Resources.Load<Material>("blow");
-    //    GetComponent<MeshRenderer>().materials = s;
-        target = GameObject.Find("Player").transform;
+        target = Player.singleton.transform;
     }
-
 
     void Update()
     {
@@ -36,7 +35,6 @@ public class MagicaController : MonoBehaviour {
         string str = other.gameObject.tag;
         if(str == "Sord")
         {
-           
             timeElapsed = 0;
         }
     }

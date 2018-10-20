@@ -16,33 +16,32 @@ public class PlayerMagica : MonoBehaviour
 
     void Start()
     {
-        
-        
+       
     }
 
     public void ShotMagica()
     {
 
-        GameObject magic =  Instantiate(magicaPrefabs) as GameObject;
+        GameObject magic =  Instantiate(magicaPrefabs,muzzle.position, muzzle.rotation) as GameObject;
         Vector3 force;
 
-        force = this.gameObject.transform.forward * speed;
+        force = magic.transform.forward * speed;
 
         // Rigidbodyに力を加えて発射
        magic.GetComponent<Rigidbody>().AddForce(force);
-
-        // 弾丸の位置を調整
-       magic.transform.position = muzzle.position;
     }
 
     void Update()
-    {
+    { 
+        //OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)
+
+        /*
         this.delta += Time.deltaTime;
         if (this.delta > this.span)
         {
             this.delta = 0;
             Destroy(gameObject);
         }
-
+        */
     }
 }

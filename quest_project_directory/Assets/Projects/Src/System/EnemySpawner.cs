@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner singleton;
 
-    [SerializeField] List<GameObject> EnemyPrefabs = new List<GameObject>();
+    public List<GameObject> EnemyPrefabs = new List<GameObject>();
 
-    private int EnemyCount = 0;
-    private int KilledEnemyCount = 0;
+    public int EnemyCount = 0;
+    public int KilledEnemyCount = 0;
+
+    private void Awake()
+    {
+        singleton = this;
+    }
 
     private void Start()
     {
@@ -25,17 +31,26 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("LoopSpawn");
         while(true)
         {
-            Spawn(0);
+            int n = Random.Range(0, EnemyPrefabs.Count);
+            Debug.Log(n);
+            Spawn(n);
             yield return new WaitForSeconds(5.0f);
-        }
+            //yield return null;
+          }
     }
 
     private void Spawn(int enemyNum)
     {
         float r = Random.Range(0.0f, 360.0f);
-        Vector3 spawnPos = Vector3.forward * Mathf.Cos(r) + Vector3.forward * Mathf.Sin(r) * 20.0f;
+        Vector3 spawnPos = Player.singleton.transform.position + (Vector3.right * Mathf.Cos(r) + Vector3.forward * Mathf.Sin(r)) * 20.0f;
         GameObject obj = Instantiate(EnemyPrefabs[enemyNum], spawnPos, Quaternion.identity);
-        obj.transform.LookAt(Vector3.zero);
+        obj.transform.LookAt(Player.singleton.transform.position);
         EnemyCount++;
+    }
+
+    public void DeathEnemy()
+    {
+        EnemyCount--;
+        KilledEnemyCount++;
     }
 }

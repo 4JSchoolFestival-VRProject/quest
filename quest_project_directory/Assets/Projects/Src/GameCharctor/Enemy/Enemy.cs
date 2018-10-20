@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour,GameCharacter {
         agent = GetComponent<NavMeshAgent>();
         bar = GetComponentInChildren<HpRequest>();
         bar.SetEnemy(this);
-//        bar.EnemyHpInitialized(s.SearchStatusTable(1), s.SearchStatusTable(1));
+        //bar.EnemyHpInitialized(s.SearchStatusTable(1), s.SearchStatusTable(1));
 
 
     }
@@ -109,12 +109,12 @@ public class Enemy : MonoBehaviour,GameCharacter {
 
     public void processHpEvent(int damage)
     {
-        
         UpdateStatus(KeyHp(),  Hp - damage);
         bar.Request(Hp);
         if (Hp <= 0)
         {
             Destroy(gameObject);
+            EnemySpawner.singleton.DeathEnemy();
             myDataBase.AgentPlayer().processLevelEvent();
         }
    

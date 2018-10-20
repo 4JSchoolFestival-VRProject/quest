@@ -9,11 +9,11 @@ public class MagicaGenerator : MonoBehaviour
     public GameObject magicaPrefabs;
     float span = 1.0f;
     float delta = 0;
-    private RectTransform img_t;
+   // private RectTransform img_t;
 
     void Start()
     {
-        img_t = gameObject.transform.Find("Canvas").gameObject.transform.Find("Image").gameObject.GetComponent<RectTransform>();
+        //img_t = gameObject.transform.Find("Canvas").gameObject.transform.Find("Image").gameObject.GetComponent<RectTransform>();
     }
 
     void Update()
@@ -22,11 +22,17 @@ public class MagicaGenerator : MonoBehaviour
         if (this.delta > this.span)
         {
             this.delta = 0;
+            this.span = Random.Range(1.0f, 2.0f);
+            GameObject item = Instantiate(magicaPrefabs, transform.position, transform.rotation) as GameObject;
+            float x = Random.Range(-0.5f, 0.5f);
+            float y = Random.Range(1, 5);
+            /*
             GameObject item = Instantiate(magicaPrefabs) as GameObject;
             float x = Random.Range(-0.5f, 0.5f);
             float y = Random.Range(1, 5);
             img_t.anchoredPosition = new Vector3(x, y, 0.2f);
             item.transform.position = new Vector3(x, y, 20);
+            */
         }
     }
 

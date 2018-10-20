@@ -42,8 +42,6 @@ public class OculusSordCollider : MonoBehaviour {
             default:
                 Debug.Log("何に当たったか分からないよ～");
                 break;
-
-
         }
        
     }

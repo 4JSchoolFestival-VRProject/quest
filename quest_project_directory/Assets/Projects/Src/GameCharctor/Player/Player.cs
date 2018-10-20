@@ -106,11 +106,13 @@ public class Player : MonoBehaviour, GameCharacter
 
     public void processLevelEvent()
     {
+        /*
         int lv = Search(0) + 1;
         UpdateStatus(0, Search(0) + 1, false);
         for(int i = 1; i < 5; i++)
         {
-            UpdateStatus(i, Search(i) + lv, false);
+            UpdateStatus(i, Search(i) + lv, true);
         }
+        */
     }
 }

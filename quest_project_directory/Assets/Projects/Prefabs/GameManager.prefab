@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06afb5fb3ce24214d9330bdc83f6a0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyRespawn: {fileID: 0}
+  stages:
+  - {fileID: 114238872574356430, guid: 2d26355d3b26c0846b3fa6c9a653be68, type: 2}

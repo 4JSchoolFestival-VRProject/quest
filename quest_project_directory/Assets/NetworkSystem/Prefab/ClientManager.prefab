@@ -52,7 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9918aa0bee769ec40a2bf1e402caf47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  udpPort: 50000
   castPort: 50001
+  iPAddress: 192.168.10.7
 --- !u!114 &114267041973666390
 MonoBehaviour:
   m_ObjectHideFlags: 1

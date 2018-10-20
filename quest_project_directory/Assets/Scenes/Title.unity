@@ -545,11 +545,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114051252054279906, guid: a91e76f771054e741b2f6ec748bb2c5a,
-        type: 2}
-      propertyPath: iPAddress
-      value: 192.168.11.16
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91e76f771054e741b2f6ec748bb2c5a, type: 2}
   m_IsPrefabAsset: 0
@@ -661,6 +656,26 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed1c797ec3736704db03a0d64d010e33, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1638126486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1173083721989922, guid: 9a287f076a4cbfe43a211f3faacc964e,
+    type: 2}
+  m_PrefabInternal: {fileID: 502374707}
+--- !u!114 &1638126487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638126486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e46edb482d95941a3cd4defa853534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicaPrefabs: {fileID: 1005837331939650, guid: 0d9c57a1ab2831340b114e24ef026d0d,
+    type: 2}
+  muzzle: {fileID: 1782548884}
+  speed: 1
 --- !u!1001 &1757373988
 Prefab:
   m_ObjectHideFlags: 0
@@ -703,6 +718,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef28d16aa5bceb40bc55d6fbb51557d, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &1782548884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4774527719512936, guid: 9a287f076a4cbfe43a211f3faacc964e,
+    type: 2}
+  m_PrefabInternal: {fileID: 502374707}
 --- !u!1 &1843945794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1410420007267846, guid: 9a287f076a4cbfe43a211f3faacc964e,

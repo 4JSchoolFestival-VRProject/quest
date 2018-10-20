@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
     public static StartCountDown startCountDown;
+    public List<Stage> stages = new List<Stage>();
+    public int stageNum = 0;
 
     private void Awake()
     {
@@ -21,6 +23,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SceneManager.activeSceneChanged += OnSceneLoaded;
+    }
+
+    private void Update()
+    {
+        /*
+        if ()
+        {
+
+        }
+        */
     }
 
     public void OnSceneLoaded(Scene bscene, Scene ascene)
@@ -45,5 +57,6 @@ public class GameManager : MonoBehaviour
     private void OnStartGame()
     {
         Debug.Log("Start");
+        EnemySpawner.singleton.EnemyPrefabs = stages[stageNum].EnemyPrefabs;
     }
 }
