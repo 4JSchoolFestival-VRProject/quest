@@ -11,9 +11,4 @@ public class GameOverManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Title");
         yield break;
     }
-
-    private void Update()
-    {
-
-    }
 }

@@ -11,7 +11,8 @@ public class PlayerHp : MonoBehaviour {
     int hp;
     int maxhp;
 
-	void Start () {
+	void Start ()
+    {
         tex = gameObject.transform.Find("Text").GetComponent<Text>();
         sl = GetComponent<Slider>();
         player = myDataBase.AgentPlayer();

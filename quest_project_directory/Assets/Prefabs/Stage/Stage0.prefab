@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f18df9edb634344a572f2a177ae67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Noruma: 5
-  Level: 1
-  EnemyPrefabs:
-  - {fileID: 1065627951256346, guid: ae736969ccabaa04baf82a6560c32060, type: 2}
+  noruma: 5
+  level: 1
+  span: 5
+  enemyPrefabs:
+  - {fileID: 1427523937020934, guid: bf71cf3f9872c9d4d9fe058fe00ae9ce, type: 2}

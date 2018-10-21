@@ -37,5 +37,28 @@ namespace Custom
             canvas.SetActive(false);
             yield break;
         }
+
+        public void CountDown(int stageNum)
+        {
+            GameStartAction = null;
+            canvas.SetActive(true);
+            StartCoroutine(_CountDown(stageNum));
+        }
+
+        private IEnumerator _CountDown(int stageNum)
+        {
+            text.text = "Stage " + (stageNum + 1).ToString();
+            yield return new WaitForSeconds(2.0f);
+            for (int n = 3; n > 0; n--)
+            {
+                text.text = n.ToString();
+                yield return new WaitForSeconds(1.0f);
+            }
+            text.text = "Fight!";
+            GameStartAction();
+            yield return new WaitForSeconds(1.0f);
+            canvas.SetActive(false);
+            yield break;
+        }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class playerMp : MonoBehaviour
 {
-
     Text tex;
     Slider sl;
     Player player;

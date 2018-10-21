@@ -24,7 +24,7 @@ namespace Custom
 
         private void Start()
         {
-            status = new Status(1, 0, 10, 6, 6, 6, 0.2f);
+            ResetStatus();
         }
 
         private void Update()
@@ -35,6 +35,11 @@ namespace Custom
         protected virtual void Attack()
         {
 
+        }
+
+        public void ResetStatus()
+        {
+            status = new Status(1, 0, 10, 6, 6, 6, 0.2f);
         }
 
         public void AddDamage(int atk)

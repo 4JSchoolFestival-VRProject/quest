@@ -80,6 +80,7 @@ namespace Custom
 
         public void AddDamage(int atk)
         {
+            m_Animator.SetTrigger("Damage");
             int damage = atk - status.parameters.def;
             if (damage <= 0) damage = 1;
             status.AddDamage(damage);
@@ -89,7 +90,9 @@ namespace Custom
         public void Death()
         {
             Instantiate(m_ExplosionPrefab, transform.position, transform.rotation);
-            PlayerController.singleton.status.AddExp(exp);
+            PlayerController.singleton.status.AddExp(exp * spawnLevel);
+            EnemySpawner.singleton.DeathEnemy();
+            Debug.Log(EnemySpawner.singleton.KilledEnemyCount);
             Destroy(gameObject);
         }
     }
